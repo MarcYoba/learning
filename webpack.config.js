@@ -20,8 +20,24 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
+    .addEntry('app', 
+        'jquery',
+        'popper.js/dist/umd/popper',
+        'bootstrap/dist/js/bootstrap.min.js',
+        'startbootstrap-sb-admin-2/js/sb-admin-2.min.js',
+        'chart.js/dist/Chart.bundle.min.js',
+        'jquery.easing/jquery.easing.min.js',
+        'jquery-backstretch',
+        'waypoints/lib/noframework.waypoints.min.js',
+        'wow.js/dist/wow.min.js',
 
+        './assets/app.js'
+    )
+    .autoProvidejQuery()
+    .addStyleEntry('sb-admin-2', [
+        './node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.min.css',
+        './node_modules/@fortawesome/fontawesome-free/css/all.min.css'
+    ])
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 

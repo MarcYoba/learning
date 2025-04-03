@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -26,6 +28,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    private ?Inscription $Inscription = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Payement::class)]
+    private Collection $Payements;
+
+    public function __construct()
+    {
+        $this->Payements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -95,5 +108,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getInscription(): ?Inscription
+    {
+        return $this->Inscription;
+    }
+
+    public function setInscription(?Inscription $Inscription): static
+    {
+        $this->Inscription = $Inscription;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Payement>
+     */
+    public function getPayements(): Collection
+    {
+        return $this->Payements;
+    }
+
+    public function addPayement(Payement $payement): static
+    {
+        if (!$this->Payements->contains($payement)) {
+            $this->Payements->add($payement);
+            $payement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePayement(Payement $payement): static
+    {
+        if ($this->Payements->removeElement($payement)) {
+            // set the owning side to null (unless already changed)
+            if ($payement->getUser() === $this) {
+                $payement->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
