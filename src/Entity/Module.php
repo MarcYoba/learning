@@ -24,13 +24,14 @@ class Module
     #[ORM\Column(length: 255)]
     private ?string $video = null;
 
-    #[ORM\ManyToMany(targetEntity: Cours::class, inversedBy: 'Module')]
-    private Collection $cours;
+    #[ORM\Column(length: 255)]
+    private ?string $code = null;
 
-    public function __construct()
-    {
-        $this->cours = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column]
+    private ?int $duree = null;
 
     public function getId(): ?int
     {
@@ -73,27 +74,40 @@ class Module
         return $this;
     }
 
-    /**
-     * @return Collection<int, Cours>
-     */
-    public function getCours(): Collection
+    public function getCode(): ?string
     {
-        return $this->cours;
+        return $this->code;
     }
 
-    public function addCour(Cours $cour): static
+    public function setCode(string $code): static
     {
-        if (!$this->cours->contains($cour)) {
-            $this->cours->add($cour);
-        }
+        $this->code = $code;
 
         return $this;
     }
 
-    public function removeCour(Cours $cour): static
+    public function getDescription(): ?string
     {
-        $this->cours->removeElement($cour);
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
+
+    public function getDuree(): ?int
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(int $duree): static
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
 }

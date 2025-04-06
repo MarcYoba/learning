@@ -1,14 +1,3 @@
-@import "~bootstrap/scss/bootstrap"; 
-@import "styles/sb-admin-2.min";
-@import "~bootstrap/scss/bootstrap";
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/brands";
-
-@import "~startbootstrap-sb-admin-2/scss/sb-admin-2";
-
 body {
     background-color: lightgray;
 }

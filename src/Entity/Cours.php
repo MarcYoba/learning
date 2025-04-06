@@ -24,13 +24,16 @@ class Cours
     #[ORM\ManyToOne(inversedBy: 'cours')]
     private ?Inscription $Inscription = null;
 
-    #[ORM\ManyToMany(targetEntity: Module::class, mappedBy: 'cours')]
-    private Collection $Module;
 
-    public function __construct()
-    {
-        $this->Module = new ArrayCollection();
-    }
+    #[ORM\Column(length: 50)]
+    private ?string $code = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column]
+    private ?int $durre = null;
+
 
     public function getId(): ?int
     {
@@ -73,29 +76,38 @@ class Cours
         return $this;
     }
 
-    /**
-     * @return Collection<int, Module>
-     */
-    public function getModule(): Collection
+    public function getCode(): ?string
     {
-        return $this->Module;
+        return $this->code;
     }
 
-    public function addModule(Module $module): static
+    public function setCode(string $code): static
     {
-        if (!$this->Module->contains($module)) {
-            $this->Module->add($module);
-            $module->addCour($this);
-        }
+        $this->code = $code;
 
         return $this;
     }
 
-    public function removeModule(Module $module): static
+    public function getDescription(): ?string
     {
-        if ($this->Module->removeElement($module)) {
-            $module->removeCour($this);
-        }
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDurre(): ?int
+    {
+        return $this->durre;
+    }
+
+    public function setDurre(int $durre): static
+    {
+        $this->durre = $durre;
 
         return $this;
     }
