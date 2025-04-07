@@ -33,6 +33,14 @@ class Module
     #[ORM\Column]
     private ?int $duree = null;
 
+    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Cours::class, orphanRemoval: true)]
+    private Collection $cour;
+
+    public function __construct()
+    {
+        $this->cour = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +114,36 @@ class Module
     public function setDuree(int $duree): static
     {
         $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cours>
+     */
+    public function getCour(): Collection
+    {
+        return $this->cour;
+    }
+
+    public function addCour(Cours $cour): static
+    {
+        if (!$this->cour->contains($cour)) {
+            $this->cour->add($cour);
+            $cour->setModule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCour(Cours $cour): static
+    {
+        if ($this->cour->removeElement($cour)) {
+            // set the owning side to null (unless already changed)
+            if ($cour->getModule() === $this) {
+                $cour->setModule(null);
+            }
+        }
 
         return $this;
     }
