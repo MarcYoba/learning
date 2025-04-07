@@ -29,15 +29,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\ManyToOne(inversedBy: 'user')]
-    private ?Inscription $Inscription = null;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Payement::class)]
     private Collection $Payements;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Inscription::class, orphanRemoval: true)]
+    private Collection $inscriptions;
+
+    #[ORM\Column(length: 100)]
+    private ?string $telephone = null;
+
+    #[ORM\Column(type: 'string', length: 2, nullable: true)]
+    private ?string $country = null;
+
 
     public function __construct()
     {
         $this->Payements = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,18 +118,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getInscription(): ?Inscription
-    {
-        return $this->Inscription;
-    }
-
-    public function setInscription(?Inscription $Inscription): static
-    {
-        $this->Inscription = $Inscription;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Payement>
      */
@@ -148,6 +144,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $payement->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): static
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions->add($inscription);
+            $inscription->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscription $inscription): static
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getUser() === $this) {
+                $inscription->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): static
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): static
+    {
+        $this->country = $country;
 
         return $this;
     }

@@ -36,9 +36,13 @@ class Module
     #[ORM\OneToMany(mappedBy: 'module', targetEntity: Cours::class, orphanRemoval: true)]
     private Collection $cour;
 
+    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Inscription::class, orphanRemoval: true)]
+    private Collection $inscriptions;
+
     public function __construct()
     {
         $this->cour = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +146,36 @@ class Module
             // set the owning side to null (unless already changed)
             if ($cour->getModule() === $this) {
                 $cour->setModule(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): static
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions->add($inscription);
+            $inscription->setModule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscription $inscription): static
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getModule() === $this) {
+                $inscription->setModule(null);
             }
         }
 
