@@ -21,16 +21,12 @@ class Inscription
     #[ORM\OneToMany(mappedBy: 'Inscription', targetEntity: User::class)]
     private Collection $user;
 
-    #[ORM\OneToMany(mappedBy: 'Inscription', targetEntity: Cours::class)]
-    private Collection $cours;
-
     #[ORM\Column(length: 30)]
     private ?string $status = null;
 
     public function __construct()
     {
         $this->user = new ArrayCollection();
-        $this->cours = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,36 +70,6 @@ class Inscription
             // set the owning side to null (unless already changed)
             if ($user->getInscription() === $this) {
                 $user->setInscription(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Cours>
-     */
-    public function getCours(): Collection
-    {
-        return $this->cours;
-    }
-
-    public function addCour(Cours $cour): static
-    {
-        if (!$this->cours->contains($cour)) {
-            $this->cours->add($cour);
-            $cour->setInscription($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCour(Cours $cour): static
-    {
-        if ($this->cours->removeElement($cour)) {
-            // set the owning side to null (unless already changed)
-            if ($cour->getInscription() === $this) {
-                $cour->setInscription(null);
             }
         }
 

@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\CoursRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
@@ -21,9 +23,6 @@ class Cours
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cours')]
-    private ?Inscription $Inscription = null;
-
 
     #[ORM\Column(length: 50)]
     private ?string $code = null;
@@ -33,6 +32,20 @@ class Cours
 
     #[ORM\Column]
     private ?int $durre = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Video = null;
+
+    #[ORM\ManyToOne(inversedBy: 'cour')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Module $module = null;
+
+    #[Assert\File(
+        maxSize: "500M", // Taille max du fichier
+        mimeTypes: ["video/mp4", "video/quicktime"], // Formats autorisés
+        mimeTypesMessage: "Seuls les formats MP4 et MOV sont autorisés"
+    )]
+    private ?File $videoFile = null;
 
 
     public function getId(): ?int
@@ -60,18 +73,6 @@ class Cours
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getInscription(): ?Inscription
-    {
-        return $this->Inscription;
-    }
-
-    public function setInscription(?Inscription $Inscription): static
-    {
-        $this->Inscription = $Inscription;
 
         return $this;
     }
@@ -109,6 +110,41 @@ class Cours
     {
         $this->durre = $durre;
 
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->Video;
+    }
+
+    public function setVideo(string $Video): static
+    {
+        $this->Video = $Video;
+
+        return $this;
+    }
+
+    public function getModule(): ?Module
+    {
+        return $this->module;
+    }
+
+    public function setModule(?Module $module): static
+    {
+        $this->module = $module;
+
+        return $this;
+    }
+
+    public function getVideoFile(): ?File
+    {
+        return $this->videoFile;
+    }
+
+    public function setVideoFile(?File $videoFile): static
+    {
+        $this->videoFile = $videoFile;
         return $this;
     }
 }
