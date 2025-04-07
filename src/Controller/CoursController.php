@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cours;
+use App\Entity\Module;
 use App\Form\CoursType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,16 +21,24 @@ class CoursController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
-            $video = $form->get('Video')->getData();
+            $video = $form->get('videoFile')->getData();
             if($video) {
                 $newFilename = uniqid().'.'.$video->guessExtension();
                 $video->move($this->getParameter('videos_directory'), $newFilename);
                 $cours->setVideo($newFilename);
+                $nbvideo = $cours->getModule()->getVideo();
+                $nbvideo = $nbvideo + 1;
+                $module = $cours->getModule();
+                
+                if ($module) {
+                    $module->setVideo($nbvideo);
+                }
+
+                $em->persist($cours);
+                $em->flush();
             }
 
-            $em->persist($cours);
-            $em->flush();
+            
 
             return $this->redirectToRoute('cours_list');
         }else if($form->isSubmitted() && !$form->isValid()) {
@@ -45,7 +54,7 @@ class CoursController extends AbstractController
     public function show(EntityManagerInterface $em): Response
     {
         $cours = $em->getRepository(Cours::class)->findAll();
-        return $this->render('cours/show.html.twig', [
+        return $this->render('cours/list.html.twig', [
             'cours' => $cours,
         ]);
     }

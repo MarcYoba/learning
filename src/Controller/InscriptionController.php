@@ -43,4 +43,18 @@ class InscriptionController extends AbstractController
             'inscriptions' => $inscriptions,
         ]);
     }
+
+    #[Route('/inscription/formation/view/{id}', name: 'inscription_view_cours')]
+    public function viewCours(EntityManagerInterface $em, $id): Response
+    {
+        $inscription = $em->getRepository(Inscription::class)->find($id);
+
+        if (!$inscription) {
+            throw $this->createNotFoundException('Inscription not found');
+        }
+
+        return $this->render('inscription/view_cours.html.twig', [
+            'inscription' => $inscription,
+        ]);
+    }
 }
