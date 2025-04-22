@@ -1,78 +1,72 @@
 /*
- * Fichier JavaScript principal
+ * Fichier JavaScript principal - Version corrigée
  */
 
-// CSS
-import './styles/app.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'animate.css/animate.min.css';
+// CSS (ordre optimisé)
+import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap en premier
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import '../node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.min.css';
+import 'animate.css/animate.min.css';
+import 'startbootstrap-sb-admin-2/css/sb-admin-2.min.css'; // Chemin corrigé
+import './styles/app.css'; // Styles personnalisés en dernier
 
-// JS Libraries (dans le bon ordre)
-import 'jquery';
+// JS Libraries (ordre de dépendance corrigé)
+import $ from 'jquery';
 import 'jquery.easing';
-import 'bootstrap';
-import WOW from 'wow.js';
-import Chart from 'chart.js/auto';
-import '../node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.min.js';
+import 'bootstrap'; // Après jQuery
+import { Tooltip, Popover } from 'bootstrap'; // Import spécifique Bootstrap
 import Swiper from 'swiper';
-
-// Initialisation WOW.js
-new WOW({
-  offset: 100, // distance de déclenchement
-  mobile: true // activation sur mobile
-}).init();
+import { WOW } from 'wow.js';
+import Chart from 'chart.js/auto';
+import 'startbootstrap-sb-admin-2/js/sb-admin-2.min.js'; // Chemin corrigé
 
 // Configuration globale
-window.$ = window.jQuery = $; // jQuery global
-window.Chart = Chart; // Chart.js global
+window.$ = window.jQuery = $; // Déclaration globale nécessaire pour SB Admin
 
-// Initialisation conditionnelle des plugins SB Admin 2
-$(document).ready(function() {
-  // Vérifie l'existence des éléments avant d'initialiser
-  const initSBAdminPlugins = () => {
-      // Sidebar Toggle
-      if ($('#sidebarToggle').length) {
-          $('#sidebarToggle').on('click', function(e) {
-              e.preventDefault();
-              $('body').toggleClass('sidebar-toggled');
-              $('.sidebar').toggleClass('toggled');
-          });
-      }
-
-      // Tooltips
-      if ($('[data-bs-toggle="tooltip"]').length) {
-          $('[data-bs-toggle="tooltip"]').tooltip();
-      }
-
-      // Popovers
-      if ($('[data-bs-toggle="popover"]').length) {
-          $('[data-bs-toggle="popover"]').popover();
-      }
-  };
-
-  // Délai d'initialisation pour s'assurer que le DOM est prêt
-  setTimeout(initSBAdminPlugins, 100);
+// Initialisation WOW.js (une seule instance)
+const wow = new WOW({
+  offset: 100,
+  mobile: true,
+  live: true // Ajout recommandé pour le rechargement dynamique
 });
+wow.init();
 
-new WOW({
-  mobile: false, // Désactive les animations sur mobile
-  offset: 100 // Déclenchement plus tôt
-}).init();
+// Initialisation des composants
+// $(document).ready(function() {
+//   // Sidebar Toggle
+//   $('#sidebarToggle').on('click', function(e) {
+//     e.preventDefault();
+//     $('body').toggleClass('sidebar-toggled');
+//     $('.sidebar').toggleClass('toggled');
+//   });
 
+//   // Tooltips (avec vérification d'existence)
+//   if (document.querySelector('[data-bs-toggle="tooltip"]')) {
+//     Tooltip.init(document.body, {
+//       selector: '[data-bs-toggle="tooltip"]'
+//     });
+//   }
 
+//   // Popovers (avec vérification d'existence)
+//   if (document.querySelector('[data-bs-toggle="popover"]')) {
+//     Popover.init(document.body, {
+//       selector: '[data-bs-toggle="popover"]'
+//     });
+//   }
+// });
 
-
-new Swiper('.swiper-slider-1', {
-  loop: JSON.parse(document.querySelector('.swiper-slider-1').dataset.loop),
-  autoplay: {
-    delay: Number(document.querySelector('.swiper-slider-1').dataset.autoplay),
-    disableOnInteraction: false
-  },
-  simulateTouch: JSON.parse(document.querySelector('.swiper-slider-1').dataset.simulateTouch),
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
-  }
+// Configuration Swiper améliorée
+document.querySelectorAll('.swiper-slider-1').forEach(container => {
+  new Swiper(container, {
+    loop: JSON.parse(container.dataset.loop),
+    autoplay: {
+      delay: Number(container.dataset.autoplay),
+      disableOnInteraction: false
+    },
+    simulateTouch: JSON.parse(container.dataset.simulateTouch),
+    modules: [Navigation], // Adaptation à Swiper 8+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  });
 });
