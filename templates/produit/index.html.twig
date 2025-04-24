@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProduitController!{% endblock %}
+{% block title %}Product{% endblock %}
 
 {% block body %}
 <!DOCTYPE html>
@@ -41,178 +41,8 @@
     </head>
 	<body>
 		<!-- HEADER -->
-		<header>
-			<!-- TOP HEADER -->
-			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fas fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fas fa-envelope-o"></i> email@email.com</a></li>
-						<li><a href="#"><i class="fas fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-					</ul>
-					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fas fa-dollar"></i> XAF</a></li>
-						<li><a href="#"><i class="fas fa-user-o"></i> My Account</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- /TOP HEADER -->
-
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="{{ asset('./img/logo.png')}}" alt="">
-								</a>
-							</div>
-						</div>
-						<!-- /LOGO -->
-
-						<!-- SEARCH BAR -->
-						<div class="col-md-6">
-							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
-								</form>
-							</div>
-						</div>
-						<!-- /SEARCH BAR -->
-
-						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
-							
-							<div class="header-ctn">
-								<!-- Wishlist -->
-								<div>
-									<a href="#">
-										<i class="fas fa-heart-o"></i>
-										<span>Your Wishlist</span>
-										<div class="qty">2</div>
-									</a>
-								</div>
-								<!-- /Wishlist -->
-
-								<!-- Cart -->
-								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i class="fas fa-shopping-cart"></i>
-										<span>Your Cart</span>
-										<div class="qty">3</div>
-									</a>
-									<div class="cart-dropdown">
-										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="{{ asset('./img/product01.png') }}" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fas fa-close"></i></button>
-											</div>
-
-											<div class="product-widget">
-												<div class="product-img">
-													<img src=" {{ asset('./img/product02.png') }}" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fas fa-close"></i></button>
-											</div>
-										</div>
-										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
-										</div>
-										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fas-arrow-circle-right"></i></a>
-										</div>
-									</div>
-								</div>
-								<!-- /Cart -->
-
-								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Menu</span>
-									</a>
-								</div>
-								<!-- /Menu Toogle -->
-							</div>
-						</div>
-						<!-- /ACCOUNT -->
-					</div>
-					<!-- row -->
-				</div>
-				<!-- container -->
-			</div>
-			<!-- /MAIN HEADER -->
-		</header>
-		<!-- /HEADER -->
-
-		<!-- NAVIGATION -->
-		<nav id="navigation">
-			<!-- container -->
-			<div class="container">
-				<!-- responsive-nav -->
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-						<!-- Logo/Brand (optionnel) -->
-						<a class="navbar-brand" href="#">Mon Site</a>
-				
-						<!-- Bouton toggle mobile -->
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#responsive-nav">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-				
-						<!-- Contenu de la navbar -->
-						<div class="collapse navbar-collapse" id="responsive-nav">
-							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Home</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Hot Deals</a>
-								</li>
-								<li class="nav-item dropdown"> <!-- Exemple de dropdown -->
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-										Categories
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Tous</a></li>
-										<li><a class="dropdown-item" href="#">Mangeoire</a></li>
-										<li><a class="dropdown-item" href="#">Abreuvoir</a></li>
-							
-									</ul>
-								</li>
-								
-							</ul>
-				
-							<!-- Partie alignée à droite (optionnelle) -->
-						</div>
-					</div>
-				</nav>
-				<!-- /responsive-nav -->
-			</div>
-			<!-- /container -->
-		</nav>
+		{% include "product.html.twig" %}
+			
 		<!-- /NAVIGATION -->
 
 		<!-- SECTION -->
@@ -300,35 +130,39 @@
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="{{ asset('./img/product01.png') }}" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-													<span class="new">NEW</span>
+										{% for product in products %}
+											<div class="product">
+												<div class="product-img">
+													<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+													<div class="product-label">
+														<span class="sale">-{{product.reduction }}</span>
+														<span class="new">NEW</span>
+													</div>
+												</div>
+												<div class="product-body">
+													<p class="product-category">{{product.nom }}</p>
+													<h3 class="product-name"><a href="{{path('product_detail',{'id':product.id}) }}">{{product.caracteristique }}</a></h3>
+													<h4 class="product-price">{{ product.prix - product.reduction }} <del class="product-old-price">{{ product.prix }}</del></h4>
+													<div class="product-rating">
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+													</div>
+													<div class="product-btns">
+														<a href="{{ path('product_detail',{'id':product.id}) }}"> 
+															<button class="add-to-wishlist"><i class="fas fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+															<button class="add-to-compare"><i class="fas fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+															<button class="quick-view"><i class="fas fa-eye"></i><span class="tooltipp">Details</span></button>
+														</a>
+													</div>
+												</div>
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> add to cart</button>
 												</div>
 											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fas fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fas fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fas fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
+										{% endfor %}
 										<!-- /product -->
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
@@ -422,39 +256,39 @@
 								<div id="tab2" class="tab-pane fade in active">
 									<div class="products-slick" data-nav="#slick-nav-2">
 										
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="{{ asset('./img/product07.png') }}" alt="">
-												<div class="product-label">
-													<span class="new">NEW</span>
+										{% for product in products %}
+												<!-- product -->
+											<div class="product">
+												<div class="product-img">
+													<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+													<div class="product-label">
+														<span class="new">NEW</span>
+													</div>
+												</div>
+												<div class="product-body">
+													<p class="product-category">{{ product.nom }}</p>
+													<h3 class="product-name"><a href="{{path('product_detail',{'id':product.id}) }}">{{product.caracteristique }}</h3>
+													<h4 class="product-price">{{ product.prix - product.reduction }} <del class="product-old-price">{{ product.prix }}</del></h4>
+													<div class="product-rating">
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star-o"></i>
+													</div>
+													<div class="product-btns">
+														<button class="add-to-wishlist"><i class="fas fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+														<button class="add-to-compare"><i class="fas fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+														<button class="quick-view"><i class="fas fa-eye"></i><span class="tooltipp">quick view</span></button>
+													</div>
+												</div>
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> add to cart</button>
 												</div>
 											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fas fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fas fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fas fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
 										<!-- /product -->
-
-										
+										{% endfor %}
+									
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>
@@ -487,31 +321,64 @@
 						<div class="products-widget-slick" data-nav="#slick-nav-3">
 							<div>
 								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="{{ asset('./img/product07.png') }}" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
+								{% set randomIndex = random(products|length - 1) %}
+								{% for product in products %}
+									{% if loop.index0 == randomIndex %}
+										<div class="product-widget highlighted">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% else %}
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+								
 								<!-- /product widget -->
 							</div>
 
 							<div>
 								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="{{ asset('./img/product01.png') }}" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
+								{% set randomIndex = random(products|length - 1) %}
+								{% for product in products %}
+									{% if loop.index0 == randomIndex %}
+										<div class="product-widget highlighted">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% else %}
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
 								<!-- /product widget -->
 								
 							</div>
@@ -529,17 +396,61 @@
 						<div class="products-widget-slick" data-nav="#slick-nav-4">
 							<div>
 								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="{{ asset('./img/product04.png') }}" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
+								{% set randomIndex = random(products|length - 1) %}
+								{% for product in products %}
+									{% if loop.index0 == randomIndex %}
+										<div class="product-widget highlighted">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% else %}
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
 								<!-- /product widget -->
+							</div>
+							<div>
+								{% set randomIndex = random(products|length - 1) %}
+								{% for product in products %}
+									{% if loop.index0 == randomIndex %}
+										<div class="product-widget highlighted">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% else %}
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
 							</div>
 						</div>
 					</div>
@@ -557,23 +468,63 @@
 						<div class="products-widget-slick" data-nav="#slick-nav-5">
 							<div>
 								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="{{ asset('./img/product01.png') }}" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
+								{% set randomIndex = random(products|length - 1) %}
+								{% for product in products %}
+									{% if loop.index0 == randomIndex %}
+										<div class="product-widget highlighted">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% else %}
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
 								<!-- /product widget -->
-
-								
 							</div>
 
+
 							<div>
-								
+								{% set randomIndex = random(products|length - 1) %}
+								{% for product in products %}
+									{% if loop.index0 == randomIndex %}
+										<div class="product-widget highlighted">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% else %}
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="{{ asset('uploads/'~ product.image) }}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ product.nom }}</p>
+												<h3 class="product-name"><a href="#">{{ product.caracteristique }}</a></h3>
+												<h4 class="product-price">{{ product.prix - product.reduction }}<del class="product-old-price">{{product.prix }}</del></h4>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
 							</div>
 						</div>
 					</div>
@@ -593,11 +544,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="newsletter">
-							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
-							<form>
-								<input class="input" type="email" placeholder="Enter Your Email">
-								<button class="newsletter-btn"><i class="fas fa-envelope"></i> Subscribe</button>
-							</form>
+							
+							
 							<ul class="newsletter-follow">
 								<li>
 									<a href="#"><i class="fas fa-facebook"></i></a>
