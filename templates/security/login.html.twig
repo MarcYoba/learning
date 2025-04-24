@@ -56,7 +56,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-white mb-4 ">Welcome Back!</h1>
                                     </div>
-                                    <form class="user"  method="post" action="{{ path('app_login') }}">
+                                    <form class="user" method="post" action="{{ path('app_login') }}">
                                         {% if error %}
                                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                         {% endif %}
@@ -72,7 +72,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword">Password</label>
-                                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                            <div class="input-group">
+                                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary" type="button" onclick="togglePasswordVisibility()">Show</button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -92,7 +97,7 @@
                                         <a href="home.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
-                                        <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                     </form>
                                     <hr>
                                     <div class="text-center">
@@ -102,6 +107,7 @@
                                         <a class="small" href="{{ path('app_register') }}">Create Account</a>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -122,6 +128,13 @@
 
      
     <script src="js/sb-admin-2.min.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('inputPassword');
+            const passwordFieldType = passwordField.getAttribute('type');
+            passwordField.setAttribute('type', passwordFieldType === 'password' ? 'text' : 'password');
+        }
+    </script>
 
 </body>
 </html>  

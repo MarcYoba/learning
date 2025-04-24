@@ -6,6 +6,7 @@ use App\Entity\Module;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType as TypeIntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,6 +40,13 @@ class ModuleType extends AbstractType
                 'label' => 'Description',
                 'attr' => [
                     'placeholder' => 'Entrez la description du module',
+                    'class' => 'form-control form-control-user',
+                ],
+            ])
+            ->add('prix', TypeIntegerType::class, [
+                'label' => 'Prix',
+                'attr' => [
+                    'placeholder' => 'Entrez le prix du module',
                     'class' => 'form-control form-control-user',
                 ],
             ])
