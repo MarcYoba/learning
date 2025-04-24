@@ -39,10 +39,17 @@ class Module
     #[ORM\OneToMany(mappedBy: 'module', targetEntity: Inscription::class, orphanRemoval: true)]
     private Collection $inscriptions;
 
+    #[ORM\Column]
+    private ?float $prix = null;
+
+    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Paiement::class, orphanRemoval: true)]
+    private Collection $paiements;
+
     public function __construct()
     {
         $this->cour = new ArrayCollection();
         $this->inscriptions = new ArrayCollection();
+        $this->paiements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,6 +183,48 @@ class Module
             // set the owning side to null (unless already changed)
             if ($inscription->getModule() === $this) {
                 $inscription->setModule(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): static
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Paiement>
+     */
+    public function getPaiements(): Collection
+    {
+        return $this->paiements;
+    }
+
+    public function addPaiement(Paiement $paiement): static
+    {
+        if (!$this->paiements->contains($paiement)) {
+            $this->paiements->add($paiement);
+            $paiement->setModule($this);
+        }
+
+        return $this;
+    }
+
+    public function removePaiement(Paiement $paiement): static
+    {
+        if ($this->paiements->removeElement($paiement)) {
+            // set the owning side to null (unless already changed)
+            if ($paiement->getModule() === $this) {
+                $paiement->setModule(null);
             }
         }
 

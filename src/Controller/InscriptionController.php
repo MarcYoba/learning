@@ -37,6 +37,9 @@ class InscriptionController extends AbstractController
     public function view(EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         $inscriptions = $em->getRepository(Inscription::class)->findBy(['user' => $user]);
 
         return $this->render('inscription/view.html.twig', [

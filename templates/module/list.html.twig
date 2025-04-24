@@ -59,14 +59,28 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="form-group row">
-                                    <div class="col-sm-10 ">
+                                    <div class="col-sm-4 ">
                                     <h6 class="m-0 font-weight-bold text-primary">Tables Module</h6>
+                                    </div>
+                                    <div class="col-sm-2 ">
+                                        <a href="{{ path('app_inscription') }}" class="btn btn-warning btn-user btn-block">
+                                            <i class="fas fa-plus"></i> Inscription cours
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-2 ">
+                                        <a href="{{ path('inscription_view') }}" class="btn btn-success btn-user btn-block">
+                                            <i class="fas fa-list"></i> Formation
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-2 ">
+                                        <a href="{{ path('app_cours') }}" class="btn btn-secondary btn-user btn-block">
+                                            <i class="fas fa-plus"></i> Ajouter Cours
+                                        </a>
                                     </div>
                                     <div class="col-sm-2 ">
                                         <a href="{{ path('app_module') }}" class="btn btn-primary btn-user btn-block">
                                             <i class="fas fa-plus"></i> Ajouter Module
                                         </a>
-                                        
                                     </div>
                                 </div>
                         </div>
@@ -131,7 +145,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span> Production : {{ "now"|date("d-m-Y") }}</span>
+                        <span> Production : {{ "now"|date("Y-m-d") }}</span>
                     </div>
                 </div>
             </footer>
