@@ -16,6 +16,11 @@ class PaiementType extends AbstractType
             ->add('createAt')
             ->add('statut')
             ->add('module')
+            ->add('numerobancaire')
+            ->add('nomtitulaire')
+            ->add('CVV')
+            ->add('dateExpiration')
+            ->add('telephone')
         ;
     }
 

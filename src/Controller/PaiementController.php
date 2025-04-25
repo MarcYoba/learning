@@ -21,9 +21,13 @@ class PaiementController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         $inscriptions = $em->getRepository(Inscription::class)->findBy(['user' => $user]);
+        $paiement = new Paiement();
+        $form = $this->createForm(PaiementType::class, $paiement);
+        $form->handleRequest($request);
 
         return $this->render('paiement/index.html.twig', [
             'inscriptions' => $inscriptions,
+            'form' => $form->createView(),
         ]);
     }
 }
