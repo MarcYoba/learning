@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Cours;
 use App\Entity\Inscription;
+use App\Entity\Module;
+use App\Entity\Paiement;
 use App\Form\InscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,17 +50,28 @@ class InscriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/inscription/formation/view/{id}', name: 'inscription_view_cours')]
+    #[Route('/inscription/formation/view/cours/{id}', name: 'inscription_view_cours')]
     public function viewCours(EntityManagerInterface $em, $id): Response
     {
-        $inscription = $em->getRepository(Inscription::class)->find($id);
+        
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+        $paiement = $em->getRepository(Paiement::class)->findBy(['module' => $id]);
+        if (empty($paiement)) {
+            return $this->redirectToRoute('app_paiement');
+        }
+        $module = $em->getRepository(Cours::class)->findBy(['module' => $id]);
 
-        if (!$inscription) {
+        if (!$module) {
             throw $this->createNotFoundException('Inscription not found');
         }
+        $inscriptions = $em->getRepository(Inscription::class)->findBy(['user' => $user]);
 
         return $this->render('inscription/view_cours.html.twig', [
-            'inscription' => $inscription,
+            'module' => $module,
+            'inscriptions' => $inscriptions,
         ]);
     }
 }

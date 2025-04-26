@@ -28,17 +28,16 @@
         <!-- Sidebar -->
         
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <h2 class="text-center"> List des module  les cours</h2>
+        <h2 class="text-center"> List des module et les cours</h2>
         <br>
         {% for row in inscriptions %}
             <li class="nav-item">
                 <span>{{ row.module.titre }}</span>
                 <br>
             {% set cour = row.module.cour %}
-            {%set idmodule =  row.module.id%}
 
             {% for list in cour %}
-                <a class="nav-link" href="{{ path('inscription_view_cours', {'id': idmodule}) }}">
+                <a class="nav-link" href="{{ path('inscription_view_cours', {'id': row.module.id}) }}">
                     <span>{{ list.titre }}</span>
                 </a>
                 
@@ -77,62 +76,18 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div class="form-group row">
-                                    {% for row in inscriptions %}
-                                        <div class="col-sm-5 mb-3 ">
-                                            {% set statut = row.module.paiements %}
-                                            
-                                            {% if statut is empty %}
-                                                {% set cour = row.module.cour %}
-
-                                                {% for list in cour %}
-                                                    {% if loop.first %}
-                                                    <a class="nav-link" href="{{ path('app_paiement') }}">
-                                                        <video class="img-fluid" src="{{ asset('videos/' ~ list.video) }}" alt="Video" style="width: 90%; height: auto;">
-                                                            <span>{{ list.titre }}</span>   
-                                                        </video>   
-                                                    </a>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                
-                                                <br>
-                                                <p class="m-0 font-weight-bold text-primary">
-                                                    Titre: 
-                                                    {{ row.module.titre }}
-                                                </p>
-                                                <p class="m-0 font-weight-bold text-primary">
-                                                    Nombre de video: 
-                                                    {{ row.module.cour|length }}
-                                                </p>
-                                            
-                                            {% else %}
-                                                {% set cour = row.module.cour %}
-
-                                                {% for list in cour %}
-                                                    {% if loop.first %}
-                                                        <a class="nav-link" href="{{ path('inscription_view_cours',{'id':row.module.id}) }}">
-                                                            <video class="img-fluid" src="{{ asset('videos/' ~ list.video) }}" alt="Video" style="width: 90%; height: auto;">
-                                                                <span>{{ list.titre }}</span>   
-                                                            </video>   
-                                                        </a>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                <br>
-                                                <p class="m-0 font-weight-bold text-primary">
-                                                    Titre: 
-                                                    {{ row.module.titre }}
-                                                </p>
-                                                <p class="m-0 font-weight-bold text-primary">
-                                                    Nombre de video: 
-                                                    {{ row.module.cour|length }}
-                                                </p>
-                                                    
-                                            {% endif %}
+                                    {% for row in module %}
+                                        <div class="col-sm-4 mb-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ row.titre }}</h5>
+                                                    <video width="100%" controls>
+                                                        <source src="{{ asset('videos/' ~ row.video) }}" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                </div>
+                                            </div>
                                         </div>
-                                    {% else %}
-                                        <p class="m-0 font-weight-bold text-danger">
-                                            Aucun module trouvé.
-                                        </p>
-                                    
                                     {% endfor %}  
                                 </div>
                             </div>
