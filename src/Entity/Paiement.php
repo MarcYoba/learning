@@ -43,8 +43,11 @@ class Paiement
     #[ORM\Column(length: 10)]
     private ?string $CVV = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateExpiration = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $dateExpiration = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $operateur = null;
 
     public function getId(): ?int
     {
@@ -159,14 +162,26 @@ class Paiement
         return $this;
     }
 
-    public function getDateExpiration(): ?\DateTimeInterface
+    public function getDateExpiration(): ?\DateTimeImmutable
     {
         return $this->dateExpiration;
     }
 
-    public function setDateExpiration(\DateTimeInterface $dateExpiration): static
+    public function setDateExpiration(\DateTimeImmutable $dateExpiration): static
     {
         $this->dateExpiration = $dateExpiration;
+
+        return $this;
+    }
+
+    public function getOperateur(): ?string
+    {
+        return $this->operateur;
+    }
+
+    public function setOperateur(string $operateur): static
+    {
+        $this->operateur = $operateur;
 
         return $this;
     }

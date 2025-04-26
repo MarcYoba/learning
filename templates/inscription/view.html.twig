@@ -77,10 +77,12 @@
                             <div class="table-responsive">
                                 <div class="form-group row">
                                     {% for row in inscriptions %}
-                                        <div class="col-sm-5 mb-3 "> 
-                                            {% set cour = row.module.cour %}
-
+                                        <div class="col-sm-5 mb-3 ">
+                                            {% set statut = row.module.paiements %}
                                             
+                                            {% if statut is empty %}
+                                                {% set cour = row.module.cour %}
+
                                                 {% for list in cour %}
                                                     {% if loop.first %}
                                                     <a class="nav-link" href="{{ path('app_paiement') }}">
@@ -90,16 +92,40 @@
                                                     </a>
                                                     {% endif %}
                                                 {% endfor %}
+                                                
+                                                <br>
+                                                <p class="m-0 font-weight-bold text-primary">
+                                                    Titre: 
+                                                    {{ row.module.titre }}
+                                                </p>
+                                                <p class="m-0 font-weight-bold text-primary">
+                                                    Nombre de video: 
+                                                    {{ row.module.cour|length }}
+                                                </p>
                                             
-                                            <br>
-                                            <p class="m-0 font-weight-bold text-primary">
-                                                Titre: 
-                                                {{ row.module.titre }}
-                                            </p>
-                                            <p class="m-0 font-weight-bold text-primary">
-                                                Nombre de video: 
-                                                {{ row.module.cour|length }}
-                                            </p>
+                                            {% else %}
+                                                {% set cour = row.module.cour %}
+
+                                                {% for list in cour %}
+                                                    {% if loop.first %}
+                                                        <a class="nav-link" href="{{ path('inscription_view_cours',{'id':row.module.id}) }}">
+                                                            <video class="img-fluid" src="{{ asset('videos/' ~ list.video) }}" alt="Video" style="width: 90%; height: auto;">
+                                                                <span>{{ list.titre }}</span>   
+                                                            </video>   
+                                                        </a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                <br>
+                                                <p class="m-0 font-weight-bold text-primary">
+                                                    Titre: 
+                                                    {{ row.module.titre }}
+                                                </p>
+                                                <p class="m-0 font-weight-bold text-primary">
+                                                    Nombre de video: 
+                                                    {{ row.module.cour|length }}
+                                                </p>
+                                                    
+                                            {% endif %}
                                         </div>
                                     {% else %}
                                         <p class="m-0 font-weight-bold text-danger">
