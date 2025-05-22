@@ -1,18 +1,5 @@
 <header>
     <!-- TOP HEADER -->
-    <div id="top-header">
-        <div class="container">
-            <ul class="header-links pull-left">
-                <li><a href="#"><i class="fas fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fas fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fas fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-            </ul>
-            <ul class="header-links pull-right">
-                <li><a href="#"><i class="fas fa-dollar"></i> XAF</a></li>
-                <li><a href="#"><i class="fas fa-user-o"></i> My Account</a></li>
-            </ul>
-        </div>
-    </div>
 <div id="header">
     <!-- container -->
     <div class="container">
@@ -115,61 +102,90 @@
         </div>
         <!-- row -->
     </div>
+    <div class="container-fluid">
+      <nav class="navbar navbar-dark bg-dark navbar-expand-lg  navbar-light bg-light">
+        
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                
+                
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-book"></i>
+                    Formations
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ path('app_module') }}">Modules</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_cours') }}">Cours</a></li>
+                    <li><a class="dropdown-item" href="{{ path('inscription_view') }}">Formation</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_inscription') }}">Inscription</a>
+                </li>
+                </ul>
+                </li>
+                <!-- ... autres items ... -->
+            </ul>
+            <ul class="navbar-nav me-auto mb-4 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-box"></i>
+                        Produit
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('produit_Boutique') }}">Boutique</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_produit') }}">Creation Produit</a></li>
+                        <li><a class="dropdown-item" href="{{ path('produit_list') }}">Liste produit</a></li>
+                        <li><a class="dropdown-item" href="{{ path('inscription_view') }}">Formation</a></li>
+                    </ul>
+                </li>
+                <!-- ... autres items ... -->
+            </ul>
+            <ul class="navbar-nav">
+                <li><a href="#" class="nav-link"><i class="fas fa-phone"></i> +021-95-51-84</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-envelope-o"></i> email@email.com</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+            </ul>  
+            
+            <ul class="navbar-nav ms-auto">
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_logout') }}">
+                    <i class="fas fa-power-off"></i>
+                    Déconnexion
+                  </a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_login') }}">
+                    <i class="fas fa-power-off"></i>
+                    Connexion
+                  </a>
+                </li>
+                
+              {% endif %}
+            </ul>
+        </div>
+      </nav>
+    </div>
+    <div id="top-header">
+        <div class="container">
+            
+            
+        </div>
+    </div>
     <!-- container -->
 </div>
 <!-- /MAIN HEADER -->
-</header>
-<!-- /HEADER -->
 
-<!-- NAVIGATION -->
-<nav id="navigation">
-<!-- container -->
-<div class="container">
-    <!-- responsive-nav -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <!-- Logo/Brand (optionnel) -->
-            <a class="navbar-brand" href="#">Mon Site</a>
-    
-            <!-- Bouton toggle mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#responsive-nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <!-- Contenu de la navbar -->
-            <div class="collapse navbar-collapse" id="responsive-nav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('produit_Boutique') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_produit') }}">Create Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('produit_list') }}">Product List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_home') }}">Elearning</a>
-                    </li>
-                    <li class="nav-item dropdown"> <!-- Exemple de dropdown -->
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Tous</a></li>
-                            <li><a class="dropdown-item" href="#">Mangeoire</a></li>
-                            <li><a class="dropdown-item" href="#">Abreuvoir</a></li>
-                
-                        </ul>
-                    </li>
-                    
-                </ul>
-    
-                <!-- Partie alignée à droite (optionnelle) -->
-            </div>
-        </div>
-    </nav>
-    <!-- /responsive-nav -->
-</div>
-<!-- /container -->
-</nav>
+</header>

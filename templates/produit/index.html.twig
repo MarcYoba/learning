@@ -41,7 +41,9 @@
     </head>
 	<body>
 		<!-- HEADER -->
-		{% include "product.html.twig" %}
+		{% if app.request.attributes.get('_route') != 'app_home' %}
+			{% include "product.html.twig" %}
+		{% endif %}
 			
 		<!-- /NAVIGATION -->
 
