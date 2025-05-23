@@ -47,6 +47,14 @@ class Cours
     )]
     private ?File $videoFile = null;
 
+    #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Progress::class)]
+    private Collection $progress;
+
+    public function __construct()
+    {
+        $this->progress = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -145,6 +153,36 @@ class Cours
     public function setVideoFile(?File $videoFile): static
     {
         $this->videoFile = $videoFile;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progress>
+     */
+    public function getProgress(): Collection
+    {
+        return $this->progress;
+    }
+
+    public function addProgress(Progress $progress): static
+    {
+        if (!$this->progress->contains($progress)) {
+            $this->progress->add($progress);
+            $progress->setCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgress(Progress $progress): static
+    {
+        if ($this->progress->removeElement($progress)) {
+            // set the owning side to null (unless already changed)
+            if ($progress->getCours() === $this) {
+                $progress->setCours(null);
+            }
+        }
+
         return $this;
     }
 }

@@ -1,0 +1,54 @@
+<ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <h4 class="text-center"> List des module</h4>
+        <br>
+        {% set nbmodule = 1 %}
+        {% for row in inscriptions %}
+            <li class="nav-item">
+                <p style="color: #fff; background-color: #8B4513; padding: 5px 10px; border-radius: 5px; display: inline-block;"></p>
+                    Module  {{ nbmodule }} Nombre video {{ row.module.cour|length }}
+                    <span class="font-weight-bold text-info">{{ row.module.titre }}</span>
+                </p>
+                
+            {% set cour = row.module.cour %}
+            {% set idmodule =  row.module.id%}
+            {% set chapitre = 1 %}
+            {% for list in cour %}
+                <p style="margin-left: 30px; margin-bottom: 8px;"></p>
+                    <span style="color: #ffc107; font-weight: bold;">Chapitre {{ chapitre }} :
+                        <a class="nav-link d-inline-block"  href="{{ path('inscription_view_cours', {'id': idmodule}) }}">
+                            <span>
+                                {{ list.titre }}<br>
+                               Derniere Progression : 
+                               <span class="" style="font-weight: bold; color: #2c3e50;">
+                                    {% for progressbar in progress %}
+                                        {% if progressbar.id == list.id %}
+                                            {{ progressbar.pourcentage|round(0) }}%
+                                            <div class="progress-container">
+                                                <div class="progress-bar" style="width: {{ progressbar.pourcentage }}%;"></div>
+                                            </div>
+                                        {% endif %}
+
+                                    {% else %}
+                                        0%
+                                    {% endfor %}
+                                </span>
+                                
+                            </span>
+                        </a>
+                    </span>
+                </p>
+                
+            {% set chapitre = chapitre + 1 %}
+            {% endfor %}
+            {% set nbmodule = nbmodule + 1 %}
+        {% else %}
+            <p class="m-0 font-weight-bold">
+                Aucun module trouvé.
+            </p>
+        
+        {% endfor %}
+        <hr class="sidebar-divider my-0">
+
+        <hr class="sidebar-divider">
+    
+</ul>

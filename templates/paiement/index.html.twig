@@ -9,52 +9,19 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-
-
 </head>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
         
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <h2 class="text-center"> List des module et les cours</h2>
-        <br>
-        {% for row in inscriptions %}
-            <li class="nav-item">
-                <span>{{ row.module.titre }}</span>
-                <br>
-            {% set cour = row.module.cour %}
-
-            {% for list in cour %}
-                <a class="nav-link" href="{{ path('inscription_view_cours', {'id': list.id}) }}">
-                    <span>{{ list.titre }}</span>
-                </a>
-                
-            {% endfor %}
-        {% else %}
-            <p class="m-0 font-weight-bold">
-                Aucun module trouvé.
-            </p>
-        
-        {% endfor %}
-    <hr class="sidebar-divider my-0">
-
-    <hr class="sidebar-divider">
-    
-    </ul>
-        <!-- End of Sidebar -->
-
+        {% include "navcour.html.twig" %}
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->

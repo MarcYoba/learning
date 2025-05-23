@@ -44,12 +44,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Paiement::class, orphanRemoval: true)]
     private Collection $paiements;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Progress::class)]
+    private Collection $progress;
+
 
     public function __construct()
     {
         $this->Payements = new ArrayCollection();
         $this->inscriptions = new ArrayCollection();
         $this->paiements = new ArrayCollection();
+        $this->progress = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -230,6 +234,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($paiement->getUser() === $this) {
                 $paiement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progress>
+     */
+    public function getProgress(): Collection
+    {
+        return $this->progress;
+    }
+
+    public function addProgress(Progress $progress): static
+    {
+        if (!$this->progress->contains($progress)) {
+            $this->progress->add($progress);
+            $progress->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgress(Progress $progress): static
+    {
+        if ($this->progress->removeElement($progress)) {
+            // set the owning side to null (unless already changed)
+            if ($progress->getUser() === $this) {
+                $progress->setUser(null);
             }
         }
 

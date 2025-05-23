@@ -15,10 +15,10 @@ import 'jquery.easing';
 import 'bootstrap'; // Après jQuery
 import { Tooltip, Popover } from 'bootstrap'; // Import spécifique Bootstrap
 import Swiper from 'swiper';
-import { WOW } from 'wow.js';
+import  WOW  from 'wow.js';
+
 import Chart from 'chart.js/auto';
 import 'startbootstrap-sb-admin-2/js/sb-admin-2.min.js'; // Chemin corrigé
-
 // Configuration globale
 window.$ = window.jQuery = $; // Déclaration globale nécessaire pour SB Admin
 
