@@ -6,6 +6,7 @@ use App\Entity\Cours;
 use App\Entity\Inscription;
 use App\Entity\Module;
 use App\Entity\Paiement;
+use App\Entity\Progress;
 use App\Form\InscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,9 +45,10 @@ class InscriptionController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         $inscriptions = $em->getRepository(Inscription::class)->findBy(['user' => $user]);
-
+        $progress = $em->getRepository(Progress::class)->findBy(['user' => $user]);
         return $this->render('inscription/view.html.twig', [
             'inscriptions' => $inscriptions,
+            'progress' => $progress,
         ]);
     }
 
@@ -68,10 +70,11 @@ class InscriptionController extends AbstractController
             throw $this->createNotFoundException('Inscription not found');
         }
         $inscriptions = $em->getRepository(Inscription::class)->findBy(['user' => $user]);
-
+        $progress = $em->getRepository(Progress::class)->findBy(['user' => $user]);
         return $this->render('inscription/view_cours.html.twig', [
             'module' => $module,
             'inscriptions' => $inscriptions,
+            'progress' => $progress,
         ]);
     }
 }
