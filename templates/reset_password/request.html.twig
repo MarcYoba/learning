@@ -3,20 +3,79 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    <h1>Reset your password</h1>
+<html lang="en">
 
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address, and we will send you a
-                link to reset your password.
-            </small>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login</title>
+
+    <style>
+      .image-container {
+    text-align: center;
+    margin: 20px;
+    background-image: url('img/laptop.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    }
+    </style>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+       
+        <div class="row justify-content-center " >
+
+            <div class="col-xl-10 col-lg-12 col-md-9 ">
+
+                <div class="card o-hidden border-0 shadow-lg my-5 image-container">
+                    <div class="card-body p-0">
+                       
+                        <div class="row">
+                            
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-white mb-4 ">Réinitialiser votre mot de passe!</h1>
+                                    </div>
+                                    {% for flash_error in app.flashes('reset_password_error') %}
+                                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                                    {% endfor %}
+                                    
+
+                                    {{ form_start(requestForm) }}
+                                        {{ form_row(requestForm.email, {
+                                            'attr': {'class': 'h4 text-white mb-4'}
+                                        }) }}
+                                        <div>
+                                            <small class="h4 text-white mb-4 ">
+                                                Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                                            </small>
+                                        </div>
+
+                                        <button class="btn btn-primary">Envoiyer un Email de réinitialiser</button>
+                                    {{ form_end(requestForm) }}
+                                        </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+    </div>
+
+</body>
+</html> 
 {% endblock %}
