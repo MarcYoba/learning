@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,8 +44,10 @@ class ProduitController extends AbstractController
     public function Boutique(EntityManagerInterface $em): Response
     {
         $product = $em->getRepository(Produit::class)->findAll();
+        $panier = $em->getRepository(Panier::class)->findBy(["user"=>$this->getUser()]);
         return $this->render('produit/index.html.twig', [
             'products' => $product,
+            'panier' => $panier,
         ]);
     }
 

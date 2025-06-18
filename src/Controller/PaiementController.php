@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Module;
 use App\Entity\Paiement;
 use App\Form\PaiementType;
+use App\Entity\Progress;
+use App\Entity\Cours;
 use App\Entity\Inscription;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,10 +28,11 @@ class PaiementController extends AbstractController
         $paiement = new Paiement();
         $form = $this->createForm(PaiementType::class, $paiement);
         $form->handleRequest($request);
-
+        $progress = $em->getRepository(Progress::class)->findBy(['user' => $user]);
         return $this->render('paiement/index.html.twig', [
             'inscriptions' => $inscriptions,
             'form' => $form->createView(),
+            'progress' => $progress,
         ]);
     }
 

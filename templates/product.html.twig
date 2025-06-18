@@ -47,51 +47,51 @@
 
                     <!-- Cart -->
                     <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span>Your Cart</span>
-                            <div class="qty">3</div>
+                        <i class="fas fa-shopping-cart me-3 text-white text-center"></i>
+                        <a class="btn btn-black dropdown-toggle d-flex align-items-center me-2 text-white" href="#" role="button" id="cartDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Panier</span>
+                            <span class="badge bg-danger ms-4">{{ panier|length }}</span>
                         </a>
-                        <div class="cart-dropdown">
-                            <div class="cart-list">
-                                <div class="product-widget">
-                                    <div class="product-img">
-                                        <img src="{{ asset('./img/product01.png') }}" alt="">
+                        {% set montant = 0 %}
+                        <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="cartDropdown" style="min-width: 300px;">
+                        {% for paniers in panier %}
+                            {% set montant = montant + paniers.produit.prix %}
+                            
+                                <li class="mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ asset('uploads/'~ paniers.produit.image) }}" alt="" class="img-fluid rounded me-2" style="width: 50px; height: 50px;">
+                                        <div>
+                                            <h6 class="mb-0"><a href="#" class="text-decoration-none">{{ paniers.produit.nom }}</a></h6>
+                                            <small class="text-muted"><span class="fw-bold">1x</span> {{ paniers.produit.prix }}</small>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger ms-2">
+                                            <a href="{{ path('panier_delete',{'id':paniers.id}) }}">
+                                                <i class="fas fa-close"></i>
+                                            </a>
+                                        </button>
                                     </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                    </div>
-                                    <button class="delete"><i class="fas fa-close"></i></button>
+                                </li>
+                                
+                        {% endfor %}
+                            <li>
+                                <div class="border-top pt-2">
+                                    <small class="text-muted">{{ panier|length }} Produit</small>
+                                    <div class="fw-bold">{{ montant }} FCFA</div>
                                 </div>
-
-                                <div class="product-widget">
-                                    <div class="product-img">
-                                        <img src=" {{ asset('./img/product02.png') }}" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                    </div>
-                                    <button class="delete"><i class="fas fa-close"></i></button>
-                                </div>
-                            </div>
-                            <div class="cart-summary">
-                                <small>3 Item(s) selected</small>
-                                <h5>SUBTOTAL: $2940.00</h5>
-                            </div>
-                            <div class="cart-btns">
-                                <a href="#">View Cart</a>
-                                <a href="#">Checkout  <i class="fa fas-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
+                            </li>
+                            <li class="d-flex justify-content-between mt-2">
+                                <a href="{{ path('panier_view') }}" class="btn btn-outline-primary btn-sm">Details</a>
+                                <a href="{{ path('app_commande') }}" class="btn btn-primary btn-sm">Commander<i class="fas fa-arrow-circle-right"></i></a>
+                            </li>
+                        </ul>
+                        
                     </div>
                     <!-- /Cart -->
 
                     <!-- Menu Toogle -->
                     <div class="menu-toggle">
                         <a href="#">
-                            <i class="fa fa-bars"></i>
+                            <i class="fas fa-bars"></i>
                             <span>Menu</span>
                         </a>
                     </div>
