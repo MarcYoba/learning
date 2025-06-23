@@ -1,0 +1,191 @@
+<header>
+    <!-- TOP HEADER -->
+<div id="header">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- LOGO -->
+            <div class="col-md-3">
+                <div class="header-logo">
+                    <a href="#" class="logo">
+                        <img src="{{ asset('./img/logo.png')}}" alt="">
+                    </a>
+                </div>
+            </div>
+            <!-- /LOGO -->
+
+            <!-- SEARCH BAR -->
+            <div class="col-md-6">
+                <div class="header-search">
+                    <form>
+                        <select class="input-select">
+                            <option value="0">All Categories</option>
+                            <option value="1">Category 01</option>
+                            <option value="1">Category 02</option>
+                        </select>
+                        <input class="input" placeholder="Search here">
+                        <button class="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /SEARCH BAR -->
+
+            <!-- ACCOUNT -->
+            <div class="col-md-3 clearfix">
+                
+                <div class="header-ctn">
+                    <!-- Wishlist -->
+                    <div>
+                        <a href="#">
+                            <i class="fas fa-heart-o"></i>
+                            <span>Your Wishlist</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <!-- /Wishlist -->
+
+                    <!-- Cart -->
+                    <div class="dropdown">
+                        <i class="fas fa-shopping-cart me-3 text-white text-center"></i>
+                        <a class="btn btn-black dropdown-toggle d-flex align-items-center me-2 text-white" href="#" role="button" id="cartDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Panier</span>
+                            <span class="badge bg-danger ms-4">{{ panier|length }}</span>
+                        </a>
+                        {% set montant = 0 %}
+                        <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="cartDropdown" style="min-width: 300px;">
+                        {% for paniers in panier %}
+                            {% set montant = montant + paniers.produit.prix %}
+                            
+                                <li class="mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ asset('uploads/'~ paniers.produit.image) }}" alt="" class="img-fluid rounded me-2" style="width: 50px; height: 50px;">
+                                        <div>
+                                            <h6 class="mb-0"><a href="#" class="text-decoration-none">{{ paniers.produit.nom }}</a></h6>
+                                            <small class="text-muted"><span class="fw-bold">1x</span> {{ paniers.produit.prix }}</small>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger ms-2">
+                                            <a href="{{ path('panier_delete',{'id':paniers.id}) }}">
+                                                <i class="fas fa-close"></i>
+                                            </a>
+                                        </button>
+                                    </div>
+                                </li>
+                                
+                        {% endfor %}
+                            <li>
+                                <div class="border-top pt-2">
+                                    <small class="text-muted">{{ panier|length }} Produit</small>
+                                    <div class="fw-bold">{{ montant }} FCFA</div>
+                                </div>
+                            </li>
+                            <li class="d-flex justify-content-between mt-2">
+                                <a href="{{ path('panier_view') }}" class="btn btn-outline-primary btn-sm">Details</a>
+                                <a href="{{ path('app_commande') }}" class="btn btn-primary btn-sm">Commander<i class="fas fa-arrow-circle-right"></i></a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    <!-- /Cart -->
+
+                    <!-- Menu Toogle -->
+                    <div class="menu-toggle">
+                        <a href="#">
+                            <i class="fas fa-bars"></i>
+                            <span>Menu</span>
+                        </a>
+                    </div>
+                    <!-- /Menu Toogle -->
+                </div>
+            </div>
+            <!-- /ACCOUNT -->
+        </div>
+        <!-- row -->
+    </div>
+    <div class="container-fluid">
+      <nav class="navbar navbar-dark bg-dark navbar-expand-lg  navbar-light bg-light">
+        
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                
+                
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-book"></i>
+                    Formations
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ path('app_module') }}">Modules</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_cours') }}">Cours</a></li>
+                    <li><a class="dropdown-item" href="{{ path('inscription_view') }}">Formation</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_inscription') }}">Inscription</a>
+                </li>
+                </ul>
+                </li>
+                <!-- ... autres items ... -->
+            </ul>
+            <ul class="navbar-nav me-auto mb-4 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-box"></i>
+                        Produit
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('produit_Boutique') }}">Boutique</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_produit') }}">Creation Produit</a></li>
+                        <li><a class="dropdown-item" href="{{ path('produit_list') }}">Liste produit</a></li>
+                        <li><a class="dropdown-item" href="{{ path('inscription_view') }}">Formation</a></li>
+                    </ul>
+                </li>
+                <!-- ... autres items ... -->
+            </ul>
+            <ul class="navbar-nav">
+                <li><a href="#" class="nav-link"><i class="fas fa-phone"></i> +021-95-51-84</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-envelope-o"></i> email@email.com</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+            </ul>  
+            
+            <ul class="navbar-nav ms-auto">
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_logout') }}">
+                    <i class="fas fa-power-off"></i>
+                    Déconnexion
+                  </a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_login') }}">
+                    <i class="fas fa-power-off"></i>
+                    Connexion
+                  </a>
+                </li>
+                
+              {% endif %}
+            </ul>
+        </div>
+      </nav>
+    </div>
+    <div id="top-header">
+        <div class="container">
+            
+            
+        </div>
+    </div>
+    <!-- container -->
+</div>
+<!-- /MAIN HEADER -->
+
+</header>

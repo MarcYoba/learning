@@ -1,0 +1,71 @@
+version: '3.8'
+
+networks:
+  symfony_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${SUBNET}
+
+services:
+  # Serveur Web (Apache + PHP)
+  symfony_web:
+    build: ./web
+    container_name: symfony_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web/symfony:/var/www/html
+    networks:
+      symfony_net:
+        ipv4_address: 172.20.0.10
+    env_file: .env
+    depends_on:
+      - symfony_db
+      - symfony_mail
+
+  # Base de données MySQL
+  symfony_db:
+    image: mysql:8.0
+    container_name: symfony_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      symfony_net:
+        ipv4_address: 172.20.0.20
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: symfony_phpmyadmin
+    environment:
+      PMA_HOST: symfony_db  # Nom du service MySQL
+      PMA_PORT: 3306
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+      UPLOAD_LIMIT: 500M
+    ports:
+      - "8081:80"
+    networks:
+      symfony_net:
+        ipv4_address: 172.20.0.30
+    depends_on:
+      - symfony_db
+
+  # Serveur Mail (MailHog)
+  symfony_mail:
+    image: mailhog/mailhog
+    container_name: symfony_mail
+    ports:
+      - "1025:1025" # SMTP
+      - "8025:8025" # Web UI
+    networks:
+      symfony_net:
+        ipv4_address: 172.20.0.40
+
+volumes:
+  db_data:
