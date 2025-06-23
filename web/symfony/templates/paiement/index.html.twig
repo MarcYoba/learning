@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation!{% endblock %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        
+        {% include "navcour.html.twig" %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- navbar -->
+                {% include "navbar.html.twig" %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    {{ form_start(form)}}
+                    <h1 class="h3 mb-2 text-gray-800">Payement de la formation</h1>
+                    <p class="mb-4">
+                    </p>
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Paiement Bancaire</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{ path('app_paiement') }}" method="post">
+                                        <div class="form-group">
+                                            <label for="cardNumber">selection le Module</label>
+                                            <select class="form-control" id="module" name="module" required>
+                                                {% for inscription in inscriptions %}
+                                                    <option value="{{ inscription.module.id }}">{{ inscription.module.titre }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cardNumber">Numéro de Carte</label>
+                                            {{ form_widget(form.numerobancaire) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cardHolder">Nom du Titulaire</label>
+                                            {{ form_widget(form.nomtitulaire) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="expiryDate">Date d'Expiration</label>
+                                            {{ form_widget(form.dateExpiration) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            {{ form_widget(form.CVV) }}
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Payer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Paiement Mobile</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{ path('paiement_mobile') }}" method="post">
+                                        <div class="form-group">
+                                            <label for="cardNumber">selection le Module</label>
+                                            <select class="form-control" id="module" name="module" required>
+                                                {% for inscription in inscriptions %}
+                                                    <option value="{{ inscription.module.id }}">{{ inscription.module.titre }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mobileNumber">Numéro de Téléphone</label>
+                                            {{  form_widget(form.telephone) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="operator">Opérateur</label>
+                                            {{ form_widget(form.operateur) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="amount">Montant</label>
+                                            {{ form_widget(form.montant) }}
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Payer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DataTales Example -->
+                    {{ form_end(form) }}
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>vestion Production &copy; {{ "now"|date('Y-m-d') }}</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+</body>
+
+</html>
+{% endblock %}
