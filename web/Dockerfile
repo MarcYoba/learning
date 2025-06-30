@@ -20,6 +20,10 @@ RUN a2enmod rewrite
 # Installer Composer
 COPY --from=composer:2.7.7 /usr/bin/composer /usr/local/bin/composer
 
+COPY ./symfony/ /var/www/html
+
 WORKDIR /var/www/html
+
+
 
 # EXPOSE 80
