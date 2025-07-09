@@ -16,11 +16,9 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Activer le rewrite
 RUN a2enmod rewrite
-
+COPY ./symfony/ /var/www/html/
 # Installer Composer
 COPY --from=composer:2.7.7 /usr/bin/composer /usr/local/bin/composer
-
-COPY ./symfony/ /var/www/html
 
 WORKDIR /var/www/html
 
