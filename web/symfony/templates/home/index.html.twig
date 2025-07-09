@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
 <!DOCTYPE html>
@@ -69,16 +69,17 @@
         <div class="container">
           <div class="row row-50 justify-content-center justify-content-lg-between">
             <div class="col-12">
-              <h3 class="h-custom-1 f1">A Few Words About Us</h3>
+              <h3 class="h-custom-1 f1">AB-Training About Us</h3>
             </div>
             <div class="col-md-6 col-lg-5 col-xl-3 wow fadeIn">
-                <p>À Bradston College, nous visons à offrir une éducation et une formation de haute qualité qui répondent aux besoins des employeurs et des individus. Nous travaillons à offrir des cours développés en collaboration avec les employeurs.</p><a class="button button-primary-gradient" href="#"><span>lire la suite</span></a>
+                <p>À AB-training, nous visons à offrir une éducation et une formation de haute qualité qui répondent aux besoins des employeurs et des individus. Nous travaillons à offrir des cours développés en collaboration avec les employeurs.</p>
+                <a class="button button-primary-gradient" href="#"><span>lire la suite</span></a>
             </div>
             <div class="col-md-6 col-xl-3 wow fadeIn" data-wow-delay=".2s">
               <!-- Linear progress bar-->
               <article class="progress-linear">
                 <div class="progress-header">
-                  <p>Accounting</p><span class="progress-value">75</span>
+                  <p>Formation</p><span class="progress-value">75</span>
                 </div>
                 <div class="progress-bar-linear-wrap">
                   <div class="progress-bar-linear"></div>
@@ -87,39 +88,39 @@
               <!-- Linear progress bar-->
               <article class="progress-linear">
                 <div class="progress-header">
-                  <p>Management</p><span class="progress-value">33</span>
+                  <p>Vente des produits</p><span class="progress-value">33</span>
                 </div>
                 <div class="progress-bar-linear-wrap">
                   <div class="progress-bar-linear"></div>
                 </div>
               </article>
               <!-- Linear progress bar-->
-              <article class="progress-linear">
+              {# <article class="progress-linear">
                 <div class="progress-header">
                   <p>Computer Technology</p><span class="progress-value">88</span>
                 </div>
                 <div class="progress-bar-linear-wrap">
                   <div class="progress-bar-linear"></div>
                 </div>
-              </article>
+              </article> #}
               <!-- Linear progress bar-->
-              <article class="progress-linear">
+              {# <article class="progress-linear">
                 <div class="progress-header">
                   <p>Medicine</p><span class="progress-value">75</span>
                 </div>
                 <div class="progress-bar-linear-wrap">
                   <div class="progress-bar-linear"></div>
                 </div>
-              </article>
+              </article> #}
               <!-- Linear progress bar-->
-              <article class="progress-linear">
+              {# <article class="progress-linear">
                 <div class="progress-header">
                   <p>Jurisprudence</p><span class="progress-value">50</span>
                 </div>
                 <div class="progress-bar-linear-wrap">
                   <div class="progress-bar-linear"></div>
                 </div>
-              </article>
+              </article> #}
             </div>
             <div class="col-xl-4 wow fadeIn" data-wow-delay=".4s"><img class="img-rounded" src="images/home-1-369x341.jpg" alt=""></div>
           </div>
@@ -128,19 +129,19 @@
       <!-- Featured Projects-->
       <section class="section section-lg bg-default text-center">
         <div class="container">
-          <h2 class="wow fadeIn">Our Featured Courses</h2>
+          <h2 class="wow fadeIn">FORMATION</h2>
           <div class="row row-30 row-md-50 row-xl-70">
             <div class="col-sm-6 col-lg-4 wow fadeIn">
               <!-- Post Minimal-->
               <div class="post-minimal">
-                <figure class="post-minimal-media"><a href="#"><img class="post-minimal-image" src="images/grid-gallery-1-370x260.jpg" alt="" width="370" height="260"/></a></figure>
+                <figure class="post-minimal-media"><a href="{{ path('app_login') }}"><img class="post-minimal-image" src="images/grid-gallery.jpg" alt="" width="370" height="260"/></a></figure>
                 <div class="post-minimal-meta">
                   <ul class="list-inline">
-                    <li class="list-inline-item">Teacher: </li>
-                    <li class="list-inline-itema"><a href="#">Charles Banks</a></li>
+                    <li class="list-inline-item">Formation: </li>
+                    <li class="list-inline-itema"><a href="{{ path('app_login') }}">Logiciel Ab-compta v0</a></li>
                   </ul>
                 </div>
-                <h4 class="post-minimal-title"><a href="#">Financial Analyst Course</a></h4>
+                <h4 class="post-minimal-title"><a href="{{ path('app_login') }}">Comment utiliser les fonctionnalites de base</a></h4>
               </div>
             </div>
             <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".2s">
@@ -182,7 +183,7 @@
                 <h4 class="post-minimal-title"><a href="#">Computer Science </a></h4>
               </div>
             </div>
-            <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".2s">
+            {# <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".2s">
               <!-- Post Minimal-->
               <div class="post-minimal">
                 <figure class="post-minimal-media"><a href="#"><img class="post-minimal-image" src="images/grid-gallery-5-370x260.jpg" alt="" width="370" height="260"/></a></figure>
@@ -194,8 +195,8 @@
                 </div>
                 <h4 class="post-minimal-title"><a href="#">Political Economy</a></h4>
               </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".4s">
+            </div> #}
+            {# <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".4s">
               <!-- Post Minimal-->
               <div class="post-minimal">
                 <figure class="post-minimal-media"><a href="#"><img class="post-minimal-image" src="images/grid-gallery-6-370x260.jpg" alt="" width="370" height="260"/></a></figure>
@@ -207,7 +208,7 @@
                 </div>
                 <h4 class="post-minimal-title"><a href="#">Mathematics and Statistics</a></h4>
               </div>
-            </div>
+            </div> #}
           </div><a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="#"><span>view all courses</span></a>
         </div>
       </section>
