@@ -16,6 +16,7 @@ services:
       - "8080:80"
     volumes:
       - ./web/symfony:/var/www/html
+      - ./web/php-custom.ini:/usr/local/etc/php/conf.d/custom.ini
     networks:
       symfony_net:
         ipv4_address: 172.20.0.10
