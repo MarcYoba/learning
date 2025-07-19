@@ -48,12 +48,12 @@
                   <div class="row">
                     <div class="col-md-10 col-lg-12" style="background-image: url('images/home-1-369x341.jpg'); background-size: cover; background-position: center; border-radius: 10px; padding: 200px 200px;">
                       <div class="animate-box">
-                        <h1 class="text-start" data-bs-animation="slideInLeft" data-bs-delay="300">
-                          Devenez membre de notre campus et <span class="fw-bold fst-italic">faites-vous des amis</span>
-                        </h1>
                         <div class="d-flex justify-content-start mt-3" data-bs-animation="fadeInUp" data-bs-delay="450">
                           <a class="btn btn-primary" href="{{ path('app_login') }}">s'inscrire pour l'excursion</a>
                         </div>
+                        <h1 class="text-start" data-bs-animation="slideInLeft" data-bs-delay="300">
+                          Devenez membre de notre campus et <span class="fw-bold fst-italic">faites-vous des amis</span>
+                        </h1>
                       </div>
                     </div>
                   </div>
@@ -144,7 +144,20 @@
                 <h4 class="post-minimal-title"><a href="{{ path('app_login') }}">Comment utiliser les fonctionnalites de base</a></h4>
               </div>
             </div>
-            <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".2s">
+            <div class="col-sm-6 col-lg-4 wow fadeIn">
+              <!-- Post Minimal-->
+              <div class="post-minimal">
+                <figure class="post-minimal-media"><a href="{{ path('app_login') }}"><img class="post-minimal-image" src="images/a.jpg" alt="" width="370" height="260"/></a></figure>
+                <div class="post-minimal-meta">
+                  <ul class="list-inline">
+                    <li class="list-inline-item">Formation: </li>
+                    <li class="list-inline-itema"><a href="{{ path('app_login') }}">Logiciel Ab-compta v2</a></li>
+                  </ul>
+                </div>
+                <h4 class="post-minimal-title"><a href="{{ path('app_login') }}">Comment utiliser les fonctionnalites de base</a></h4>
+              </div>
+            </div>
+            {# <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".2s">
               <!-- Post Minimal-->
               <div class="post-minimal">
                 <figure class="post-minimal-media"><a href="#"><img class="post-minimal-image" src="images/grid-gallery-2-370x260.jpg" alt="" width="370" height="260"/></a></figure>
@@ -156,8 +169,8 @@
                 </div>
                 <h4 class="post-minimal-title"><a href="#">Digital Marketing Course</a></h4>
               </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".4s">
+            </div> #}
+            {# <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".4s">
               <!-- Post Minimal-->
               <div class="post-minimal">
                 <figure class="post-minimal-media"><a href="#"><img class="post-minimal-image" src="images/grid-gallery-3-370x260.jpg" alt="" width="370" height="260"/></a></figure>
@@ -169,7 +182,7 @@
                 </div>
                 <h4 class="post-minimal-title"><a href="#">Graphic Design Course</a></h4>
               </div>
-            </div>
+            </div> #}
             <div class="col-sm-6 col-lg-4 wow fadeIn">
               <!-- Post Minimal-->
               <div class="post-minimal">
