@@ -58,7 +58,7 @@ class PaiementController extends AbstractController
             $inscriptions->setStatus('Ok');
             $paiement->setModule($module);
             $paiement->setUser($this->getUser());
-            $paiement->setDateExpiration(new \DateTimeImmutable('0000-00-00 00:00:00'));
+            $paiement->setDateExpiration(new \DateTimeImmutable());
             $paiement->setCreateAt(new \DateTimeImmutable());
             $paiement->setCVV(0);
             $em->persist($paiement);
