@@ -32,10 +32,10 @@ class Paiement
     private ?Module $module = null;
 
     #[ORM\Column]
-    private ?int $telephone = null;
+    private ?string $telephone = null;
 
     #[ORM\Column]
-    private ?int $numerobancaire = null;
+    private ?string $numerobancaire = null;
 
     #[ORM\Column(length: 100)]
     private ?string $nomtitulaire = null;
@@ -114,24 +114,24 @@ class Paiement
         return $this;
     }
 
-    public function getTelephone(): ?int
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    public function setTelephone(int $telephone): static
+    public function setTelephone(string $telephone): static
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    public function getNumerobancaire(): ?int
+    public function getNumerobancaire(): ?string
     {
         return $this->numerobancaire;
     }
 
-    public function setNumerobancaire(int $numerobancaire): static
+    public function setNumerobancaire(string $numerobancaire): static
     {
         $this->numerobancaire = $numerobancaire;
 
