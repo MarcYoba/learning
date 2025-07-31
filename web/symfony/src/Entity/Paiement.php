@@ -31,10 +31,10 @@ class Paiement
     #[ORM\JoinColumn(nullable: false)]
     private ?Module $module = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 100)]
     private ?string $telephone = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 100)]
     private ?string $numerobancaire = null;
 
     #[ORM\Column(length: 100)]
