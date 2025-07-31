@@ -9,7 +9,7 @@
             <div class="col-md-3">
                 <div class="header-logo">
                     <a href="#" class="logo">
-                        <img src="{{ asset('./img/logo.png')}}" alt="">
+                        <h1 class="text-white">AB-TRAINING</h1>
                     </a>
                 </div>
             </div>
@@ -103,11 +103,11 @@
         <!-- row -->
     </div>
     <div class="container-fluid">
-      <nav class="navbar navbar-dark bg-dark navbar-expand-lg  navbar-light bg-light">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg  navbar-light bg-light">
         
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
       
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -117,25 +117,30 @@
                         Home
                     </a>
                 </li>
-                
-                
             </ul>
+
+            <!-- Espace entre les menus -->
+            <span class="mx-2"></span>
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                    <i class="fas fa-book"></i>
-                    Formations
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ path('app_module') }}">Modules</a></li>
-                    <li><a class="dropdown-item" href="{{ path('app_cours') }}">Cours</a></li>
-                    <li><a class="dropdown-item" href="{{ path('inscription_view') }}">Formation</a></li>
-                    <li><a class="dropdown-item" href="{{ path('app_inscription') }}">Inscription</a>
-                </li>
-                </ul>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-book"></i>
+                        Formations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_module') }}">Modules</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_cours') }}">Cours</a></li>
+                        <li><a class="dropdown-item" href="{{ path('inscription_view') }}">Formation</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_inscription') }}">Inscription</a></li>
+                    </ul>
                 </li>
                 <!-- ... autres items ... -->
             </ul>
+
+            <!-- Espace entre les menus -->
+            <span class="mx-2"></span>
+
             <ul class="navbar-nav me-auto mb-4 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -151,12 +156,19 @@
                 </li>
                 <!-- ... autres items ... -->
             </ul>
+
+            <!-- Espace entre les menus -->
+            <span class="mx-2"></span>
+
             <ul class="navbar-nav">
                 <li><a href="#" class="nav-link"><i class="fas fa-phone"></i>(+237)655 271 506/673 925 507</a></li>
                 <li><a href="#" class="nav-link"><i class="fas fa-envelope-o"></i>abgroup022@email.com</a></li>
                 <!-- <li><a href="#" class="nav-link"><i class="fas fa-map-marker"></i> 1734 Stonecoal Road</a></li> -->
             </ul>  
-            
+
+            <!-- Espace entre les menus -->
+            <span class="mx-2"></span>
+
             <ul class="navbar-nav ms-auto">
               {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class="nav-item">
@@ -172,7 +184,6 @@
                     Connexion
                   </a>
                 </li>
-                
               {% endif %}
             </ul>
         </div>
